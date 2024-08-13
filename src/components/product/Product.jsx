@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 
 function Product() {
+  
   const dispatch = useDispatch();
   const productData = useSelector((store) => {
     return store.productReducer.data
@@ -14,6 +15,7 @@ function Product() {
       getAllProducts(dispatch);
     }
   }, []);
+
 
   return (
     <div>
@@ -37,14 +39,22 @@ function Product() {
       </div>
 
       <div className='products'>
-       {productData.map((product)=>{
-          console.log(product);
-          {product.image}
-        })}
+        {
+          productData.map((product) => {
+            return <div className='card'>
+              <div className="card-header">
+                <img src={product.image} width={300} height={300} />
+              </div>
+              <div className="card-body">
+                <h4>{product.title}</h4>
+              </div>
+            </div>
+          })
+        }
       </div>
 
     </div>
-  );
+  )
 }
 
 export default Product
